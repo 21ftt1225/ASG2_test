@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.container .star-widget input{
+  display: none;
+}
+.star-widget label{
+  font-size: 40px;
+  color: #444;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label{
+  color: #fd4;
+}
+input:checked ~ label{
+  color: #fd4;
+}
+input#rate-5:checked ~ label{
+  color: #fe7;
+  text-shadow: 0 0 20px #952;
+}
+#rate-1:checked ~ form header:before{
+  content: "I just hate it ";
+}
+#rate-2:checked ~ form header:before{
+  content: "I don't like it ";
+}
+#rate-3:checked ~ form header:before{
+  content: "It is awesome ";
+}
+#rate-4:checked ~ form header:before{
+  content: "I just like it ";
+}
+#rate-5:checked ~ form header:before{
+  content: "I just love it ";
+}
+input{
+	display: none;
+}
+		
+		
+	</style>
+</head>
+<body>
+<div class="container star-widget">Rate Our Story</div>
+<input type="radio"   name="ratings" value="5" id="rate1">
+<label class="fas fa-star" for="rate1"></label>
+<input type="radio"  name="ratings" value="4" id="rate2">
+<label class="fas fa-star" for="rate2"></label>
+<input type="radio"  name="ratings" value="3" id="rate3">
+<label class="fas fa-star" for="rate3"></label>
+<input type="radio"  name="ratings" value="2" id="rate4">
+<label class="fas fa-star" for="rate4"></label>
+<input type="radio"  name="ratings" value="1" id="rate5">
+<label class="fas fa-star" for="rate5"></label>
+<button onclick="avg()">Submit</button>
+
+
+<div id="isi"></div>
+<script type="text/javascript">
+		var rate1= document.getElementById("rate1");
+		var rate2= document.getElementById("rate2");
+		var rate3= document.getElementById("rate3");
+		var rate4= document.getElementById("rate4");
+		var rate5= document.getElementById("rate5");
+		var total = 0;
+		var numppl = 0;
+		var isi = document.getElementById("isi");
+		var average = 0;
+
+	function avg(){
+	
+		if(rate1.checked){total+=5; numppl++};
+		if(rate2.checked){total+= 4; numppl++};
+		if(rate3.checked){total+= 3; numppl++};
+		if(rate4.checked){total+= 2; numppl++};
+		if(rate5.checked){total+= 1; numppl++};
+		// if(rate5.checked){total+= 5; numppl++};
+		// else if(rate4.checked){total+= 4; numppl++};
+		// else if(rate3.checked){total+= 3; numppl++};
+		// else if(rate2.checked){total+= 2; numppl++};
+		// else if(rate1.checked){total+=1; numppl++};
+	
+		average = total/numppl;
+		// isi.innerHTML = "The average rating is now " + average;				
+		localStorage.setItem("ratings" , average);
+		isi.innerHTML = "The average rating is now " + localStorage.getItem("ratings");
+	}
+	//name ==
+
+</script>
+</body>
+</html>
